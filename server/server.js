@@ -1,5 +1,6 @@
 require('./config/config')
 const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app =  express();
 
@@ -16,7 +17,7 @@ app.use(bodyParser.json());
 //get obtener
 
 app.get('/', function(req, res){
-    res.send('<h1>Bienvenido a mi servidor rest</h1>');
+    res.send('<h1>Bienvenido a mi servidor rest(Local host)</h1>');
 });
 
 app.get('/usuario', function(req, res){
@@ -62,6 +63,16 @@ app.delete('/usuario/:id', function(req, res){
         mensaje: 'Usuario eliminado correctamente',
         id: id
     });
+});
+
+mongoose.connect('mongodb://localhost:27017/cafeteria', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+}, (err, res) => {
+    if(err) throw err;
+    console.log('Base de datos ONLINE');
 });
 
 app.listen(process.env.PORT , () =>{
