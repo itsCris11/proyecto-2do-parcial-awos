@@ -17,6 +17,7 @@ app.get('/', function(req, res){
 });
 
 app.use(require('./routes/usuario'));
+app.use(require('./routes/categoria'));
 
 //post insertar
 //put actulizar 
