@@ -75,5 +75,24 @@ app.put('/producto/:id', function(req, res){
     });
 });
 
+app.delete('/producto/:id', function(req, res){
+    let id = req.params.id;
+
+    Producto.findByIdAndUpdate(id, {disponible: false}, {new: true, runValidators: true, context: 'query'}, 
+    (err, proDB) => {
+        if(err){
+                    return res.status(400).json({
+                        ok: false,
+                        msg: 'Ocurrio un error al momento de eliminar',
+                        err
+                    });
+                }
+                res.json({
+                    ok: true,
+                    msg: 'Producto eliminado con exito',
+                    proDB
+                });
+    }); 
+});
 module.exports = app;  
 

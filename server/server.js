@@ -25,7 +25,7 @@ app.use(require('./routes/login'));
 //post insertar
 //put actulizar 
 //get obtener
-mongoose.connect('mongodb://localhost:27017/cafeteria', {
+mongoose.connect('mongodb+srv://admin:1708428b056dcdC@cluster0.zvooi.mongodb.net/cafeteria', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
